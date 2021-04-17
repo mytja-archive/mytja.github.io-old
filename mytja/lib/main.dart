@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:http/http.dart' as http;
@@ -75,6 +76,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextStyle linkStyle = TextStyle(color: Colors.blue);
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -99,10 +102,15 @@ class _MyHomePageState extends State<MyHomePage> {
           Card(
               child: Column(children: [
             Container(height: 10),
-            Image.network(
-              widget.personal["avatar_url"],
-              height: 100,
-              width: 100,
+            GestureDetector(
+              child: Image.network(
+                widget.personal["avatar_url"],
+                height: 100,
+                width: 100,
+              ),
+              onTap: () {
+                js.context.callMethod('open', ["https://github.com/mytja"]);
+              },
             ),
             Container(height: 10),
             Text(
@@ -117,6 +125,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text("I am an open-source developer."),
             Container(height: 5),
             Text(widget.personal["bio"]),
+            Container(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Entypo.location_pin),
+                Text(widget.personal["location"])
+              ],
+            ),
             Container(height: 10),
           ])),
           Container(height: 20),
@@ -232,7 +249,94 @@ class _MyHomePageState extends State<MyHomePage> {
                             style: TextStyle(fontSize: 30)),
                         Container(height: 10),
                         Text(
-                            "Harmonoid Music Bot is a music-playing bot with really advanced features"),
+                            "Harmonoid Music Bot is a music-playing bot with really advanced features."),
+                        RichText(
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.white),
+                            children: <TextSpan>[
+                              TextSpan(text: 'It was created with help of '),
+                              TextSpan(
+                                  text: '@alexmercerind',
+                                  style: linkStyle,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      js.context.callMethod('open',
+                                          ["https://github.com/alexmercerind"]);
+                                    }),
+                              TextSpan(text: ' and '),
+                              TextSpan(
+                                  text: '@raitonoberu',
+                                  style: linkStyle,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      js.context.callMethod('open',
+                                          ["https://github.com/raitonoberu"]);
+                                    }),
+                              TextSpan(text: " aka. "),
+                              TextSpan(
+                                  text: 'The Harmonoid Team',
+                                  style: linkStyle,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      js.context.callMethod('open',
+                                          ["https://github.com/harmonoid"]);
+                                    }),
+                            ],
+                          ),
+                        ),
+                      ])
+                    ]),
+              ]))),
+          GestureDetector(
+              onTap: () {
+                js.context
+                    .callMethod('open', ["https://github.com/mytja/RGBApp"]);
+              },
+              child: Card(
+                  child: Column(children: [
+                Container(height: 10),
+                Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/rgbapp.png",
+                        height: 150,
+                      ),
+                      Container(width: 10),
+                      Column(children: [
+                        Text("RGBApp", style: TextStyle(fontSize: 30)),
+                        Container(height: 10),
+                        Text(
+                            "RGBApp is a simple app, that can control RGB LEDs with multiple connections. \nFun fact: This was my first Flutter app"),
+                      ])
+                    ]),
+              ]))),
+          Container(height: 20),
+          Center(
+              child:
+                  Text("My organisations: ", style: TextStyle(fontSize: 30))),
+          GestureDetector(
+              onTap: () {
+                js.context.callMethod('open', ["https://github.com/MeetPlan"]);
+              },
+              child: Card(
+                  child: Column(children: [
+                Container(height: 10),
+                Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.network(
+                        "https://avatars.githubusercontent.com/u/81251558?s=400&u=c2d70fa0f2aa2a6961e177119bf7b02eedf65e80&v=4",
+                        height: 150,
+                      ),
+                      Container(width: 10),
+                      Column(children: [
+                        Text("MeetPlan", style: TextStyle(fontSize: 30)),
+                        Container(height: 10),
+                        Text(
+                            "MeetPlan organisation hosts projects related to meeting planning (MeetPlan, MeetPlanApp)"),
                       ])
                     ]),
               ]))),
