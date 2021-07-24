@@ -25,8 +25,8 @@ jobs:
           cd mytja/build/web
           git init
           git config user.name "mytja"
-          git config user.email "${EMAIL}"
-          git remote add secure-origin https://mytja:${SECRET_TOKEN}@github.com/mytja/mytja.github.io.git
+          git config user.email "${{ secrets.EMAIL }}"
+          git remote add secure-origin https://mytja:${{ secrets.SECRET_TOKEN }}@github.com/mytja/mytja.github.io.git
           git checkout -b master
           git add .
           git commit -m "Automatic deployment to GitHub Pages"
