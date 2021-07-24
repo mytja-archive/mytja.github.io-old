@@ -1,0 +1,33 @@
+name: GH-Pages
+on:
+  push:
+    branches:
+      - flutter
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - name: Install Dependencies
+        run: flutter pub get
+        working-directory: ./mytja
+      - name: Build Web
+        run: flutter build web --release --source-maps
+        working-directory: ./mytja
+      - name: Deploy
+        run: |
+          cd mytja/build/web
+          git init
+          git config user.name "mytja"
+          git config user.email "${EMAIL}"
+          git remote add secure-origin https://username:${SECRET_TOKEN}@github.com/mytja/mytja.github.io.git
+          git checkout -b master
+          git add .
+          git commit -m "Automatic deployment to GitHub Pages"
+          git push --force secure-origin master
