@@ -12,8 +12,7 @@ void main() async {
       await http.get(Uri.parse("https://api.github.com/users/mytja"));
   Map<String, dynamic> personalJSON = json.decode(personal.body.toString());
 
-  var orgs =
-      await http.get(Uri.parse("https://api.github.com/users/mytja/orgs"));
+  var orgs = await http.get(Uri.parse("https://api.github.com/users/mytja"));
   Map<String, dynamic> orgJSON = json.decode(orgs.body.toString());
 
   runApp(MyApp(personal: personalJSON, org: orgJSON));
