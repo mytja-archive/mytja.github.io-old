@@ -12,7 +12,8 @@ void main() async {
       await http.get(Uri.parse("https://api.github.com/users/mytja"));
   Map<String, dynamic> personalJSON = json.decode(personal.body.toString());
 
-  var orgs = await http.get(Uri.parse("https://api.github.com/users/mytja"));
+  var orgs =
+      await http.get(Uri.parse("https://api.github.com/users/mytja/orgs"));
   Map<String, dynamic> orgJSON = json.decode(orgs.body.toString());
 
   runApp(MyApp(personal: personalJSON, org: orgJSON));
@@ -126,6 +127,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(height: 5),
             Text(widget.personal["bio"]),
             Container(height: 10),
+            Text(
+                "I like backend more than I like frontend (servers are my thing 😅)"),
+            Container(height: 10),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -156,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text("Python", style: TextStyle(fontSize: 30)),
                     Container(height: 10),
                     Text(
-                        "From Python, I'm interested in IoT & Web development the most. \nI also develop some libraries and own some short codes")
+                        "From Python, I'm interested in IoT & Web development the most. \nI also develop some libraries and own some short codes.\nI also know typed Python & asynchronous Python")
                   ])
                 ]),
           ])),
@@ -196,9 +200,90 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text("JavaScript", style: TextStyle(fontSize: 30)),
                     Container(height: 10),
                     Text(
-                        "I know AJAX and a little bit of jQuery. \nI mostly use JavaScript in browser extensions"),
+                        "I use JavaScript in many of my projects. I am quite interested in it..."),
                   ])
                 ]),
+          ])),
+          Card(
+              child: Column(children: [
+            Container(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.network(
+                    "https://upload.wikimedia.org/wikipedia/commons/2/2b/Tux-simple.svg",
+                    height: 150,
+                  ),
+                  Container(width: 10),
+                  Column(children: [
+                    Text("Linux", style: TextStyle(fontSize: 30)),
+                    Container(height: 10),
+                    Text(
+                        "I know Linux commands, and I'm interested in Linux servers")
+                  ])
+                ]),
+          ])),
+          Card(
+              child: Column(children: [
+            Container(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.network(
+                    "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg",
+                    height: 150,
+                  ),
+                  Container(width: 10),
+                  Column(children: [
+                    Text("HTML", style: TextStyle(fontSize: 30)),
+                    Container(height: 10),
+                    Text(
+                        "WARNING! I am not a designer, even though I know some HTML")
+                  ])
+                ]),
+          ])),
+          Card(
+              child: Column(children: [
+            Container(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "fastapi.png",
+                    height: 100,
+                  ),
+                  Container(width: 10),
+                  Column(children: [
+                    Text("Flask & FastAPI", style: TextStyle(fontSize: 30)),
+                    Container(height: 10),
+                    Text(
+                        "I know quite a bit of Flask, which I then replaced with FastAPI for most of my projects")
+                  ])
+                ]),
+          ])),
+          Card(
+              child: Column(children: [
+            Container(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.network(
+                    "https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg",
+                    height: 150,
+                  ),
+                  Container(width: 10),
+                  Column(children: [
+                    Text("Arduino C", style: TextStyle(fontSize: 30)),
+                    Container(height: 10),
+                    Text(
+                        "I am also interested in microcontroller programming.\nThus I'm using Arduino C to program Arduino and Arduino-like microcontrollers"),
+                  ])
+                ]),
+            Container(height: 10),
           ])),
           Container(height: 20),
           Center(child: Text("My projects: ", style: TextStyle(fontSize: 30))),
@@ -312,6 +397,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       ])
                     ]),
               ]))),
+          Card(
+              child: Column(children: [
+            Container(height: 10),
+            Container(width: 10),
+            Column(children: [
+              Text("And a lot more projects, which you yet don't know about 😉",
+                  style: TextStyle(fontSize: 30)),
+              Container(height: 10)
+            ])
+          ])),
           Container(height: 20),
           Center(
               child:
@@ -340,6 +435,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       ])
                     ]),
               ]))),
+          Container(height: 20),
+          Center(child: Text("Used IDEs: ", style: TextStyle(fontSize: 30))),
+          Card(
+              child: Column(children: [
+            Container(height: 10),
+            Container(width: 10),
+            Column(children: [
+              Text(
+                  "I use various IDEs, and I'm quite flexible when it comes to IDEs",
+                  style: TextStyle(fontSize: 30)),
+              Container(height: 10),
+              Text("- Dart/Flutter: Visual Studio Code"),
+              Text("- Python: PyCharm"),
+              Text("- Go: GoLand"),
+              Text("- HTML, JS, CSS: WebStorm"),
+              Text("- Arduino C: Arduino IDE"),
+              Container(height: 10)
+            ])
+          ])),
         ],
       ),
     );
