@@ -18,7 +18,7 @@ jobs:
         run: flutter pub get
         working-directory: ./mytja
       - name: Build Web
-        run: flutter build web --release --source-maps --verbose
+        run: flutter build web --web-renderer html --release --source-maps --verbose
         working-directory: ./mytja
       - name: Deploy
         run: |
